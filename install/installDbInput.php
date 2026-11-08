@@ -130,7 +130,7 @@ include 'installHead.inc';
         <label for="databasehost">Database host</label>
       </div>
       <input type="text" id="databasehost" name="databasehost" 
-                        value="localhost" style="width:200px" />
+                        value="<?php echo getenv("DB_HOSTNAME") ?>" style="width:200px" />
     </p>
     <p>
       <div class="tlBox">Note: In the case that you DB connection dosn't use <b>STANDARD PORT</b> for ,
@@ -143,7 +143,7 @@ include 'installHead.inc';
       echo ". The installer will attempt to create it if not exists."?></br>
     <div class="labelHolder"><label for="databasename">Database name</label></div>
     <input type="text" id="databasename" name="databasename"  maxlength="50" 
-                 style="width:200px" value="testlink">
+                 style="width:200px" value="<?php echo getenv("DB_DATABASE") ?>" />
     </p>
     <?php if($_SESSION['isNew']){ ?>
     <p>
@@ -175,9 +175,9 @@ include 'installHead.inc';
     <p>Set an existing database user with administrative rights (root):</p>
     <p>
       <div class="labelHolder"><label for="databaseloginname">Database admin login</label></div>
-      <input type="text" id="databaseloginname" name="databaseloginname" style="width:200px" /><br />
+      <input type="text" id="databaseloginname" name="databaseloginname" value="root" style="width:200px" /><br />
       <div class="labelHolder"><label for="databaseloginpassword">Database admin password</label></div>
-      <input type="password" id="databaseloginpassword" name="databaseloginpassword" style="width:200px" /><br />
+      <input type="password" id="databaseloginpassword" name="databaseloginpassword" value="<?php echo getenv("DB_ROOT_PASSWORD"); ?>" style="width:200px" /><br />
     </p>
     <p>
     <div class="tlBox">
@@ -190,12 +190,12 @@ include 'installHead.inc';
       <div class="labelHolder">
         <label for="tl_loginname">TestLink DB login</label>
       </div>
-      <input type="text" id="tl_loginname" name="tl_loginname" style="width:200px" /><br />
+      <input type="text" id="tl_loginname" name="tl_loginname" value="<?php echo getenv("DB_USER"); ?>" style="width:200px" /><br />
           
       <div class="labelHolder">
         <label for="tl_loginpassword">TestLink DB password</label>
       </div>
-      <input type="password" id="tl_loginpassword" name="tl_loginpassword" style="width:200px" /><br />
+      <input type="password" id="tl_loginpassword" name="tl_loginpassword" value="<?php echo getenv("DB_PASSWORD"); ?>" style="width:200px" /><br />
     </p>
     <p>
     <div class="tlBox">

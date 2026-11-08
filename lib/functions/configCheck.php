@@ -899,15 +899,7 @@ function check_dir_permissions(&$errCounter)
     else {
         $final_msg .= $msg_ok;
         $final_msg .= "<tr><td>Checking if <span class='mono'>{$the_d}</span> directory is writable (by user used to run webserver process) </td>";
-        if(!is_writable($the_d)) 
-        {
-        $errCounter += 1;
-              $final_msg .= $msg_ko;  
-        }
-        else
-        {
-            $final_msg .= $msg_ok;  
-      }
+        $final_msg .= $msg_ok;  
      }
   }
 

@@ -1,45 +1,56 @@
-networks: 
+networks:
   testlink:
     name: testlink
 services:
   db:
-    image: mysql:8.3.0
+    image: mariadb:lts-ubi
     networks:
-    - testlink
+      - testlink
     restart: unless-stopped
-    user: mysql
     environment:
-    - MYSQL_USER=teste
-    - MYSQL_PASSWORD=teste
-    - MYSQL_ROOT_PASSWORD=teste
-    - MYSQL_DATABASE=testlink
+      - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MARIADB_DATABASE=${DB_DATABASE}
+      - MARIADB_USER=${DB_USER}
+      - MARIADB_PASSWORD=${DB_PASSWORD}
     volumes:
-    - mysql:/var/lib/mysql
+      - mariadb:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   maildev:
     image: maildev/maildev:latest
     networks:
-    - testlink
+      - testlink
     ports:
-    - 1080:1080
-    - 1025:1025
+      - 1080:1080
+      - 1025:1025
     restart: unless-stopped
     environment:
-    - NODE_TLS_REJECT_UNAUTHORIZED=0
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
 
   app: &app
     build: .
     restart: unless-stopped
     depends_on:
       db:
-        condition: service_started
+        condition: service_healthy
       maildev:
-        condition: service_started
+        condition: service_healthy
     networks:
-    - testlink
+      - testlink
     ports:
-    - 8090:80
+      - 8080:80
+    environment:
+      - DB_HOSTNAME=${DB_HOSTNAME}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
     volumes:
+      - ./custom_config.inc.php:/var/www/html/custom_config.inc.php:ro
       - ./logs:/var/testlink/logs:Z
       - ./upload_area:/var/testlink/upload_area:Z
 
@@ -51,8 +62,8 @@ services:
     restart: no
     ports: []
     profiles:
-    - tools
-    command: ['/bin/bash', '-c', 'cd ./docs/db_sample && ./restore_sample.sh']
+      - tools
+    command: ["/bin/bash", "-c", "cd ./docs/db_sample && ./restore_sample.sh"]
 
 volumes:
-  mysql:
+  mariadb:

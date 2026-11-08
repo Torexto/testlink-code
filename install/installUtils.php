@@ -224,8 +224,8 @@ if @ in login ->  get the hostname using splitting, and use it
                 
                 
 */
-function create_user_for_db($db_type,$db_name,$db_server, $db_admin_name, $db_admin_pass,
-                            $login, $passwd) {
+function create_user_for_db(string $db_type, string $db_name, string $db_server, string $db_admin_name, string $db_admin_pass,
+                            string $login, string $passwd) {
 $db = new database($db_type);
 
 $user_host = explode('@',$login);
