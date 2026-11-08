@@ -617,6 +617,7 @@ function _mysql_assign_grants($dbhandler,$db_host,$db_name,$login,$passwd) {
 */
 function _postgres_make_user_with_grants(&$db,$db_host,$db_name,$login,$passwd)
 {
+	$op = new stdclass();
 $op->status_ok=true;
 $op->msg='';
 
@@ -645,6 +646,7 @@ return($op);
 */
 function _postgres_make_user(&$db,$db_host,$db_name,$login,$passwd)
 {
+	$op = new stdclass();
 $op->status_ok=true;  
 $op->msg = 'ok - new user'; 
     
@@ -718,8 +720,9 @@ function _postgres_assign_grants(&$db,$db_host,$db_name,$login,$passwd)
   returns: 
 
 */
-function _mssql_make_user_with_grants($db,$the_host,$db_name,$login,$passwd)
+function _mssql_make_user_with_grants(database $db,string $the_host, string $db_name, string $login,string $passwd)
 {
+	$op = new stdclass();
   _mssql_make_user($db,$the_host,$db_name,$login,$passwd);
                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
   $op->status_ok=true;
@@ -743,8 +746,10 @@ function _mssql_make_user_with_grants($db,$the_host,$db_name,$login,$passwd)
 } // function end
   
   
-function _mssql_make_user($db,$the_host,$db_name,$login,$passwd)
+function _mssql_make_user(database $db, string $the_host, string $db_name, string $login, string $passwd)
 {
+	$op = new stdclass();
+
 
 // Transact-SQL Reference                                                                                                                                                                                                                                                                                                                                                                                                                                           
 //                                                                                                                                                                                                                                                                                                                                                                                                                                                                   

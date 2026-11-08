@@ -190,7 +190,7 @@ include 'installHead.inc';
       <div class="labelHolder">
         <label for="tl_loginname">TestLink DB login</label>
       </div>
-      <input type="text" id="tl_loginname" name="tl_loginname" value="<?php echo getenv("DB_USER"); ?>" style="width:200px" /><br />
+      <input type="text" id="tl_loginname" name="tl_loginname" value="<?php echo getenv("DB_USER"); ?>@%" style="width:200px" /><br />
           
       <div class="labelHolder">
         <label for="tl_loginpassword">TestLink DB password</label>
