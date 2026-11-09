@@ -177,7 +177,7 @@ include 'installHead.inc';
       <div class="labelHolder"><label for="databaseloginname">Database admin login</label></div>
       <input type="text" id="databaseloginname" name="databaseloginname" value="root" style="width:200px" /><br />
       <div class="labelHolder"><label for="databaseloginpassword">Database admin password</label></div>
-      <input type="password" id="databaseloginpassword" name="databaseloginpassword" value="<?php echo getenv("DB_ROOT_PASSWORD"); ?>" style="width:200px" /><br />
+      <input type="password" id="databaseloginpassword" name="databaseloginpassword" value="<?php echo getenv("DB_PASSWORD"); ?>" style="width:200px" /><br />
     </p>
     <p>
     <div class="tlBox">

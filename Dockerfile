@@ -1,4 +1,4 @@
-FROM php:8.3-apache
+FROM php:8.5-apache
 
 RUN apt update && apt upgrade -y
 RUN apt install -y \
