@@ -403,8 +403,6 @@ if ($upgrade) {
   $a_sql_data = getDirSqlFiles($a_sql_data_dir,ADD_DIR);
 }
 
-echo "4";
-
 // ------------------------------------------------------------------------
 // Now proceed with user checks and user creation (if needed)
 //

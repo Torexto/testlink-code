@@ -588,9 +588,9 @@ function _mysql_assign_grants($dbhandler,$db_host,$db_name,$login,$passwd) {
   // I hope this is not a security hole.
   //
   //
-  if( strcasecmp('localhost',$db_host) != 0 ) {
+  if( strcasecmp('%',$db_host) != 0 ) {
     $stmt = "GRANT SELECT, UPDATE, DELETE, INSERT ON 
-            `$safeDBName`.* TO '$safeLogin'@'localhost' 
+            `$safeDBName`.* TO '$safeLogin'@'%' 
             WITH GRANT OPTION ";
 
     if ( !@$dbhandler->exec_query($stmt) ) {
