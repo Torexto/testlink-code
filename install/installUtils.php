@@ -229,7 +229,7 @@ function create_user_for_db(string $db_type, string $db_name, string $db_server,
 $db = new database($db_type);
 
 $user_host = explode('@',$login);
-$the_host = 'localhost';
+$the_host = '%';
 
 if ( count($user_host) > 1 ) {
   $login    = $user_host[0];    

@@ -10,8 +10,6 @@ services:
     environment:
       - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
       - MARIADB_DATABASE=${DB_DATABASE}
-      - MARIADB_USER=${DB_USER}
-      - MARIADB_PASSWORD=${DB_PASSWORD}
     volumes:
       - mariadb:/var/lib/mysql
     healthcheck:
@@ -50,7 +48,6 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
     volumes:
-      - ./custom_config.inc.php:/var/www/html/custom_config.inc.php:ro
       - ./logs:/var/testlink/logs:Z
       - ./upload_area:/var/testlink/upload_area:Z
 
